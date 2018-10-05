@@ -1,6 +1,9 @@
 package com.capgemini.productapp;
 
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -55,4 +58,22 @@ public class ProductServiceTest {
 		assertEquals(productServiceImpl.findProductById(20), product2);
 	}
 
-}
+	
+	@Test
+	public void testupdateproduct() throws Exception{
+		Product pro=new Product(20,"oneplus6","mobile",1000.0);
+		Product pro1=new Product(20,"oneplus7","mobile",1000.0);
+		
+		when(productRepository.save(pro)).thenReturn(pro1);
+		assertEquals(productServiceImpl.updateProduct(pro), pro1);
+	}
+	@Test
+	public void testdeleteproduct() throws Exception {
+		productServiceImpl.deleteProduct(20);
+		verify(productRepository,times(1)).deleteById(20);
+	}
+	
+		
+		
+	}
+

@@ -63,13 +63,11 @@ public class ProductControllerTest {
 				.andDo(print());
 	}
 
-
 	@Test
 	public void testEditProduct() throws Exception {
-		
-		 String content =
-		 "{\"productId\":\"20\",\"productName\":oneplus7\",\"productCategory\":\"mobile\",\"price\":\"1000.0\"}";
-		 
+
+		String content = "{\"productId\":\"20\",\"productName\":oneplus7\",\"productCategory\":\"mobile\",\"price\":\"1000.0\"}";
+
 		when(productService.updateProduct(Mockito.isA(Product.class)))
 				.thenReturn(new Product(20, "oneplus7", "mobile", 1000.0));
 		when(productService.findProductById(20)).thenReturn(new Product(20, "oneplus", "mobile", 1000.0));
@@ -91,11 +89,10 @@ public class ProductControllerTest {
 				.andExpect(jsonPath("$.productCategory").value("mobile")).andExpect(jsonPath("$.price").value(1000.0))
 				.andDo(print());
 	}
-	
-@Test
-	public void testdelete() throws Exception{
+
+	@Test
+	public void testdelete() throws Exception {
 		when(productService.findProductById(20)).thenReturn(new Product(20, "oneplus", "mobile", 1000.0));
-		mockmvc.perform(delete("/products/20").accept(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(status().isOk());
+		mockmvc.perform(delete("/products/20").accept(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
 	}
 }

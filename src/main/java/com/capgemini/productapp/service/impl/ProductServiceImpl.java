@@ -35,9 +35,9 @@ public	ProductRepository productRepository;
 	}
 
 	@Override
-	public void deleteProduct(Product product) {
+	public void deleteProduct(int productId) {
 		
-		productRepository.delete(product);
+		productRepository.deleteById(productId);
 		 
 	}
 

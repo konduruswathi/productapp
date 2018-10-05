@@ -10,5 +10,5 @@ public interface ProductService {
 public Product addProduct(Product product);
 public Product updateProduct(Product product);
 public Product findProductById(int productId)throws ProductNotFoundException;
-public void deleteProduct(Product product);
+public void deleteProduct(int productId);
 }
